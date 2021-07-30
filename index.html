@@ -10,7 +10,7 @@
 			//console.log(2+2)
 			let radioButtonSelected = document.querySelector("input[name=engine]:checked").value;
 			let actionURL = {
-				google: "https://www.google.com/",
+				google: "https://www.google.com/search",
 				duckduckgo: "https://duckduckgo.com/",
 				bing: "https://www.bing.com/search",
 				ask: "https://www.ask.com/web"
@@ -18,8 +18,35 @@
     		return actionURL[radioButtonSelected]
 		};
 			let myform = document.getElementById("searchForm");
+			
+			
+
     		myform.addEventListener("submit", function() {
 				myform.action = setSearchEngine();
+
+				let inputText2 = document.querySelector("input[name=q]:text").value;
+				//let inputText2 =document.getElementsByName("q").value;
+			console.log("inputText\n", /*inputText.value,*/  inputText2)
+
+			if(inputText2.trim() === " "  && radioButtonSelected  === null)
+		  {
+			
+			  alert("Enter text and select searchbar option")
+			  event.preventDefault();
+		  }
+
+			if (inputText2.trim() === "") {
+				event.preventDefault();
+				alert("need some string to search")
+			}
+
+			if (radioButtonSelected  === null) {
+				event.preventDefault();
+				alert("Select an engine")
+			}
+
+         
+
 			});
 		});
 
